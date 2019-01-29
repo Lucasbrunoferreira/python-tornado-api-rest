@@ -7,8 +7,9 @@ from logzero import logger
 from settings import logger_config
 from handlers.users import UsersHandler
 
-define('port', default=3000)
+define('port', default=8080)
 define('version', default=1)
+
 
 def make_app():
     endpoints = [
