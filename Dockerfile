@@ -4,6 +4,10 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
+ENV PORT=8000
+
+EXPOSE 8000
+
 RUN pip install -r requirements.txt
 
 COPY . /app

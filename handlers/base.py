@@ -19,7 +19,4 @@ class BaseHandler(RequestHandler):
 
     def write_response(self, status_code, result):
         self.set_status(status_code)
-        self.finish(json.dumps({
-            'status_code': self.get_status(),
-            'data': result
-        }))
+        self.finish(json.dumps(result))

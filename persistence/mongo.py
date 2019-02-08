@@ -1,17 +1,32 @@
+from logzero import logger
 from pymongo import MongoClient
+import settings
+
+_client = None
 
 
 class MongoDb:
-    DB_NAME = 'teste'
-    DB_HOST = '127.0.0.1'
-    DB_PORT = 8080
-    DB_USER = 'admin'
-    DB_PASS = 'admin'
-    connection = MongoClient(DB_HOST, DB_PORT)
+    @classmethod
+    def get_client(cls, new=False):
 
-    def __init__(self):
-        self.connection['admin'].authenticate(self.DB_USER, self.DB_PASS)
+        global _client
 
-    def users_collection(self):
-        database = self.connection[self.DB_NAME]
-        return database['users']
+        try:
+            if new or not _client:
+                _client = MongoClient(
+                    username=settings.MONGO_USERNAME,
+                    password=settings.MONGO_PASSWORD,
+                    host=settings.MONGO_HOST,
+                    port=int(settings.MONGO_PORT),
+                    authSource='admin',
+                    authMechanism='SCRAM-SHA-1'
+                ).teste
+        except Exception as err:
+            logger.error(err)
+            _client = None
+        return _client
+
+    @classmethod
+    def users_collection(cls):
+        collection = cls.get_client().users
+        return collection
