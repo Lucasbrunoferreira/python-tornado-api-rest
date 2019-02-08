@@ -43,12 +43,12 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 
 ### Dependências
 
-| Dependência | Para quê? | Link |
-| ------------- |: -------------: | -----: |
-| tornado | servidor de estrutura web | https://www.tornadoweb.org/ |
-| pymongo | driver de conexão com o banco de dados mongo | https://api.mongodb.com/python/current/ |
-| marshmallow | validador de campos e dados | https://marshmallow.readthedocs.io |
-| logzero | criar logs da aplicação | https://logzero.readthedocs.io/en/latest/ |
+| Dependência        | Qual o uso?           | Link  |
+| ------------- |:-------------:| -----:|
+| tornado | servidor web    |    https://www.tornadoweb.org/ |
+| pymongo      | conexão com o banco de dado NoSQL mongo | https://api.mongodb.com/python/current/ |
+| marshmallow      | validação de capos e dados     |   https://marshmallow.readthedocs.io |
+| logzero | criação de logs da applicação   |    https://logzero.readthedocs.io/en/latest/ |
 
 ### Arquitetura
 **Handlers** - É a camada responsável por manipular as requisições
