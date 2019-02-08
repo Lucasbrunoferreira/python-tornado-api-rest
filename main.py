@@ -24,5 +24,5 @@ if __name__ == '__main__':
     logger_config.set_default()
     http_server = HTTPServer(app)
     http_server.listen(options.port)
-    logger.info('Listening server on port %i' % options.port, )
+    logger.info('Listening server on port %i' % options.port)
     IOLoop.current().start()

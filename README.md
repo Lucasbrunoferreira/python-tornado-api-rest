@@ -32,6 +32,10 @@ After preparing your environment and your virtualenv, follow the steps:
 * `pip install -r requeriments.txt`
 * `python main.py`
 
+Run application with docker:
+* `cd project-folder`
+* `docker build -t api-tornado .`
+* `docker run -d -p 8081:8081 --name api-tornado api-tornado:latest`
 
 ##
 
@@ -67,3 +71,8 @@ Depois de preparar seu ambiente e seu virtualenv, siga os passos:
 * `cd project-folder`
 * `pip install -r requeriments.txt`
 * `python main.py`
+
+Executar a aplicação com docker:
+* `cd project-folder`
+* `docker build -t api-tornado .`
+* `docker run -d -p 8081:8081 --name api-tornado api-tornado:latest`
