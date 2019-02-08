@@ -1,11 +1,11 @@
 # Tornado API RESTfull- Python
 
-##English
+## English
 
 This is a simple example, to implements a http web server (API RESTfull) with python (tornado framework).
 
 
-###Dependencies
+### Dependencies
 
 | Dependency        | For what?           | Link  |
 | ------------- |:-------------:| -----:|
@@ -14,7 +14,7 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 | marshmallow      | fileds schema validator     |   https://marshmallow.readthedocs.io |
 | logzero | create application logs   |    https://logzero.readthedocs.io/en/latest/ |
 
-###Architecture
+### Architecture
 **Handlers** - It is the layer responsible for handling requests
 
 **Persistence** - Responsible layer for centralizing information and database connection.
@@ -25,22 +25,23 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 
 **Settings** - Project Settings
 
-###Run
+### Run
 After preparing your environment and your virtualenv, follow the steps:
 
 * `cd project-folder`
 * `pip install -r requeriments.txt`
 * `python main.py`
 
+
 ##
 
 
-##Português - Brasil
+## Português - Brasil
 
 Este é um exemplo simples, para implementar um servidor web http (API RESTfull) com python (framework tornado).
 
 
-###Dependências
+### Dependências
 
 | Dependência | Para quê? | Link |
 | ------------- |: -------------: | -----: |
@@ -49,7 +50,7 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 | marshmallow | validador de campos e dados | https://marshmallow.readthedocs.io |
 | logzero | criar logs da aplicação | https://logzero.readthedocs.io/en/latest/ |
 
-###Arquitetura
+### Arquitetura
 **Handlers** - É a camada responsável por manipular as requisições
 
 **Persistence** - Camada responsável por centralizar informações e conexão de banco de dados.
@@ -60,7 +61,7 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 
 **Settings** - Configurações do projeto
 
-###Executar a aplicação
+### Executar a aplicação
 Depois de preparar seu ambiente e seu virtualenv, siga os passos:
 
 * `cd project-folder`
