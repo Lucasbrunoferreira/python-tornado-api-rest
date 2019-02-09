@@ -5,16 +5,14 @@ def object_id(data):
     if type(data) is list:
         for i, x in enumerate(data):
             data[i]['id'] = data[i]['_id']['$oid']
-
             del data[i]['_id']
-
         return data
+
     elif type(data) is dict:
         data['id'] = data['_id']['$oid']
-
         del data['_id']
-
         return data
+
     else:
         raise TypeError
 
@@ -28,6 +26,7 @@ def timestamp(key, data):
                 }
             )
         return data
+
     elif type(data) is dict:
             data.update(
                 {
@@ -35,13 +34,12 @@ def timestamp(key, data):
                  }
             )
             return data
+
     else:
         raise TypeError
 
 
 def object_id_and_timestamp(timestamp_key, data):
     result_formatted_object_id = object_id(data)
-
     formatted_data = timestamp(timestamp_key, result_formatted_object_id)
-
     return formatted_data

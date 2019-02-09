@@ -15,9 +15,11 @@ class UsersHandler(BaseHandler):
     def get(self):
         try:
             result = self.mongo.find_all()
+
         except Exception as err:
             logger.error('error in find users', err)
             raise ErrorThrow(status_code=500, reason=str(err))
+
         else:
             formatted_response = data_formatter.object_id_and_timestamp('created_at', result)
             self.write_response(status_code=200, result=formatted_response)
@@ -35,9 +37,11 @@ class UsersHandler(BaseHandler):
         else:
             try:
                 response = self.mongo.insert_one(new_user)
+
             except Exception as ex:
                 print(ex)
                 logger.error('error in save user in database {}'.format(ex))
                 raise ErrorThrow(status_code=400, reason=str(ex))
+
             else:
                 self.write_response(status_code=201, result=response)
