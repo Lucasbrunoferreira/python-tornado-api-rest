@@ -14,28 +14,38 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 | marshmallow      | fileds schema validator     |   https://marshmallow.readthedocs.io |
 | logzero | create application logs   |    https://logzero.readthedocs.io/en/latest/ |
 
+### Routes
+
+* GET - `/api/v1/user` - Get all users
+* POST - `/api/v1/user` - Create new user
+
 ### Architecture
-**Handlers** - It is the layer responsible for handling requests
 
-**Persistence** - Responsible layer for centralizing information and database connection.
+* **Handlers** - It is the layer responsible for manipulating requests and performing business rules.
 
-**Schemas** - Responsible for manipulating fields and data.
+* **Persistence** - Layer responsible for data manipulation.
 
-**Util** - Gather higher-use codes in the project
+    * **Schemas** - Data modeling.
+    
+    * **Database** - Connection and manipulation with database.
 
-**Settings** - Project Settings
+* **Util** - Gathers higher-use (repetitive) codes in the project.
 
 ### Run
 After preparing your environment and your virtualenv, follow the steps:
 
 * `cd project-folder`
 * `pip install -r requeriments.txt`
+* `define your connection mongo string in persistence/mongo or define a `
+* set the MONGO_URI environment variable (for connection to the database) on your machine, or manually change the persistence/mongo file
 * `python main.py`
 
 Run application with docker:
 * `cd project-folder`
-* `docker build -t api-tornado .`
-* `docker run -d -p 8081:8081 --name api-tornado api-tornado:latest`
+* `docker build -t api-tornado-img .`
+* set a MONGODB URI environment variable no following command and run it.
+* `docker run -d -p 8081:8000 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
+* yout application is running in 8081 port
 
 ##
 
@@ -54,25 +64,36 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 | marshmallow      | validação de capos e dados     |   https://marshmallow.readthedocs.io |
 | logzero | criação de logs da applicação   |    https://logzero.readthedocs.io/en/latest/ |
 
+### Rotas
+
+* GET - `/api/v1/user` - Buscar todos os usuários cadastrados
+* POST - `/api/v1/user` - Criar um novo usuário
+
 ### Arquitetura
-**Handlers** - É a camada responsável por manipular as requisições
 
-**Persistence** - Camada responsável por centralizar informações e conexão de banco de dados.
+* **Handlers** - É a camada responsável por manipular as requisições e realizar as regras de negócios.
 
-**Schemas** - Responsável pela manipulação de campos e dados.
+* **Persistence** - Camada responsável pela manipulação de dados.
 
-**Util** - Reúne códigos de uso mais alto (repetitivos) no projeto
+    * **Schemas** - Modelagem de dados.
+    
+    * **Database** - Conexão e manipulação com banco de dados.
 
-**Settings** - Configurações do projeto
+* **Util** - Reúne códigos de uso mais alto (repetitivos) no projeto
+
 
 ### Executar a aplicação
+
 Depois de preparar seu ambiente e seu virtualenv, siga os passos:
 
 * `cd project-folder`
 * `pip install -r requeriments.txt`
+*  defina a variavél de ambiente MONGO_URI (para conexão com o  banco) em sua maquina, ou altere manualmente no arquivo persistence/mongo.
 * `python main.py`
 
-Executar a aplicação com docker:
+Se preferir, pode executar a aplicação com o docker:
 * `cd project-folder`
 * `docker build -t api-tornado .`
-* `docker run -d -p 8081:8081 --name api-tornado api-tornado:latest`
+* defina a variavél de ambiente MONGO URI no comando aseguir e execute-o.
+* `docker run -d -p 8081:8000 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
+* sua aplicação esta rodando na porta 8081

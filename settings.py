@@ -1,14 +1,9 @@
 import logging
 import logzero
-
 import os
 
 PORT = os.environ.get("PORT")
-
-MONGO_USERNAME = os.environ.get("MONGO_USERNAME")
-MONGO_PASSWORD = os.environ.get("MONGO_PASSWORD")
-MONGO_HOST = os.environ.get("MONGO_HOST")
-MONGO_PORT = os.environ.get("MONGO_PORT")
+MONGO_URI = os.environ.get("MONGO_URI")
 
 
 def config_logs():

@@ -22,34 +22,18 @@ def object_id(data):
 def timestamp(key, data):
     if type(data) is list:
         for i, x in enumerate(data):
-            try:
-                data[i].update(
-                    {
-                        key: date.datetime.utcfromtimestamp(data[i][key]['$date']).strftime('%Y-%m-%d %H:%M:%S')
-                    }
-                )
-            except ValueError:
-                data[i].update(
-                    {
-                        key: date.datetime.utcfromtimestamp(data[i][key]['$date'] / 1000).strftime('%Y-%m-%d %H:%M:%S')
-                    }
-                )
-
-        return data
-    elif type(data) is dict:
-        try:
-            data.update(
+            data[i].update(
                 {
-                    key: date.datetime.utcfromtimestamp(data[key]['$date']).strftime('%Y-%m-%d %H:%M:%S')
+                    key: date.datetime.utcfromtimestamp(data[i][key]['$date'] / 1000).strftime('%Y-%m-%d %H:%M:%S')
                 }
             )
-        except ValueError:
+        return data
+    elif type(data) is dict:
             data.update(
                 {
                     key: date.datetime.utcfromtimestamp(data[key]['$date']/1000).strftime('%Y-%m-%d %H:%M:%S')
                  }
             )
-        finally:
             return data
     else:
         raise TypeError
