@@ -12,7 +12,7 @@ define('version', default=1)
 
 def make_app():
     endpoints = [
-        ("/api/v%i/users" % options.version, UsersHandler)
+        (r'/api/v{}/users/?(.*)?'.format(options.version), UsersHandler)
     ]
 
     return Application(endpoints, debug=True)
@@ -23,5 +23,5 @@ if __name__ == '__main__':
     settings.config_logs()
     http_server = HTTPServer(app)
     http_server.listen(settings.PORT)
-    logger.info('Listening server on port {}'.format(settings.PORT))
+    logger.info('Listening server on port {0}'.format(settings.PORT))
     IOLoop.current().start()

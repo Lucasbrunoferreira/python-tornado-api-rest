@@ -17,7 +17,10 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 ### Routes
 
 * GET - `/api/v1/user` - Get all users
+* GET - `/api/v1/users/{user_id}` - Get only the user for the id entered in the parameter
 * POST - `/api/v1/user` - Create new user
+* PUT - `/api/v1/users/{user_id}` - Edit the user referring to the id entered in the parameter
+* DELETE - `/api/v1/users/{user_id}` - Delete the user referring to the id entered in the parameter
 
 ### Architecture
 
@@ -66,8 +69,11 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 
 ### Rotas
 
-* GET - `/api/v1/user` - Buscar todos os usuários cadastrados
-* POST - `/api/v1/user` - Criar um novo usuário
+* GET - `/api/v1/users` - Buscar todos os usuários cadastrados
+* GET - `/api/v1/users/{user_id}` - Busque apenas o usuário referente ao id informado no paramêtro
+* POST - `/api/v1/users` - Criar um novo usuário
+* PUT - `/api/v1/users/{user_id}` - Editar o usuário referente ao id informado no parâmetro
+* DELETE - `/api/v1/users/{user_id}` - Deletar o usuário referente ao id informado no parâmetro
 
 ### Arquitetura
 

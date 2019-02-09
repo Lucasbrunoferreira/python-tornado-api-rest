@@ -7,12 +7,10 @@ def object_id(data):
             data[i]['id'] = data[i]['_id']['$oid']
             del data[i]['_id']
         return data
-
     elif type(data) is dict:
         data['id'] = data['_id']['$oid']
         del data['_id']
         return data
-
     else:
         raise TypeError
 
@@ -26,7 +24,6 @@ def timestamp(key, data):
                 }
             )
         return data
-
     elif type(data) is dict:
             data.update(
                 {
@@ -34,7 +31,6 @@ def timestamp(key, data):
                  }
             )
             return data
-
     else:
         raise TypeError
 
