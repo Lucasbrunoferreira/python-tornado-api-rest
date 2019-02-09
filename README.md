@@ -61,7 +61,7 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 | ------------- |:-------------:| -----:|
 | tornado | servidor web    |    https://www.tornadoweb.org/ |
 | pymongo      | conexão com o banco de dado NoSQL mongo | https://api.mongodb.com/python/current/ |
-| marshmallow      | validação de capos e dados     |   https://marshmallow.readthedocs.io |
+| marshmallow      | validação de campos e dados     |   https://marshmallow.readthedocs.io |
 | logzero | criação de logs da applicação   |    https://logzero.readthedocs.io/en/latest/ |
 
 ### Rotas
