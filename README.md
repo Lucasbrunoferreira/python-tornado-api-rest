@@ -1,4 +1,4 @@
-# Tornado API RESTfull- Python
+# Tornado API RESTfull - Python
 
 ## English
 
@@ -13,6 +13,8 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 | pymongo      | mongo database driver | https://api.mongodb.com/python/current/ |
 | marshmallow      | fileds schema validator     |   https://marshmallow.readthedocs.io |
 | logzero | create application logs   |    https://logzero.readthedocs.io/en/latest/ |
+| unittest | unit tests   |    https://docs.python.org/3/library/unittest.html |
+
 
 ### Routes
 
@@ -31,8 +33,16 @@ This is a simple example, to implements a http web server (API RESTfull) with py
     * **Schemas** - Data modeling.
     
     * **Database** - Connection and manipulation with database.
+    
+* **Tests** - Layer with unit application tests
 
 * **Util** - Gathers higher-use (repetitive) codes in the project.
+
+
+### Tests
+Run all unit application tests
+* `cd project-folder`
+* `python -m unittest`
 
 ### Run
 After preparing your environment and your virtualenv, follow the steps:
@@ -66,6 +76,7 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 | pymongo      | conexão com o banco de dado NoSQL mongo | https://api.mongodb.com/python/current/ |
 | marshmallow      | validação de campos e dados     |   https://marshmallow.readthedocs.io |
 | logzero | criação de logs da applicação   |    https://logzero.readthedocs.io/en/latest/ |
+| unittest | testes unitários   |    https://docs.python.org/3/library/unittest.html |
 
 ### Rotas
 
@@ -85,7 +96,15 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
     
     * **Database** - Conexão e manipulação com banco de dados.
 
+* **Tests** - Camada com os testes unitarios da aplicação
+
 * **Util** - Reúne códigos de uso mais alto (repetitivos) no projeto
+
+
+### Executar os Testes
+Para realizar todos os testes do projeto, execute:
+* `cd project-folder`
+* `python -m unittest`
 
 
 ### Executar a aplicação

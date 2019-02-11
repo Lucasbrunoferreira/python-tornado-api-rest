@@ -5,29 +5,34 @@ from bson.json_util import dumps, ObjectId
 import settings
 import json
 
-_client_database = None
+_mongo_client = None
 
 
 class MongoDb:
-    def __init__(self, collection):
-        self.collection = self.mongo_client_database()[collection]
+    database: None
+    collection: None
 
-    @classmethod
-    def mongo_client_database(cls, new=False):
-        global _client_database
+    def __init__(self):
+        self.get_mongo_client()
+
+    def get_mongo_client(self, new=False):
+        global _mongo_client
 
         try:
-            if new or not _client_database:
-                _client_database = MongoClient(settings.MONGO_URI)
-
+            if new or not _mongo_client:
+                _mongo_client = MongoClient(settings.MONGO_URI)
+                self.database = _mongo_client.get_database()
         except Exception as err:
             logger.error(err)
-            _client_database = None
-        return _client_database.get_database()
+            _mongo_client = None
+        return _mongo_client
+
+    def define_collection(self, collection):
+        self.collection = collection
 
     def insert_one(self, data: dict):
         try:
-            response = self.collection.insert_one(data, return_document=True)
+            response = self.database[self.collection].insert_one(data)
 
         except Exception as ex:
             raise ex
@@ -36,7 +41,7 @@ class MongoDb:
 
     def find_all(self):
         try:
-            response = self.collection.find()
+            response = self.database[self.collection].find()
         except Exception as ex:
             raise ex
         else:
@@ -44,7 +49,7 @@ class MongoDb:
 
     def find_one(self, document_id: str):
         try:
-            response = self.collection.find_one({'_id': ObjectId(document_id)})
+            response = self.database[self.collection].find_one({'_id': ObjectId(document_id)})
         except Exception as ex:
             raise ex
         else:
@@ -55,7 +60,7 @@ class MongoDb:
 
     def update_one(self, document_id, document):
         try:
-            response = self.collection.find_one_and_update(
+            response = self.database[self.collection].find_one_and_update(
                 {'_id': ObjectId(document_id)},
                 {'$set': document},
                 return_document=True)
@@ -69,7 +74,7 @@ class MongoDb:
 
     def delete_one(self, document_id):
         try:
-            response = self.collection.find_one_and_delete({'_id': ObjectId(document_id)})
+            response = self.database[self.collection].find_one_and_delete({'_id': ObjectId(document_id)})
         except Exception as ex:
             raise ex
         else:
