@@ -18,7 +18,7 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 
 ### Routes
 
-* GET - `/api/v1/user` - Get all users
+* GET - `/api/v1/users` - Get all users
 * GET - `/api/v1/users/{user_id}` - Get only the user for the id entered in the parameter
 * POST - `/api/v1/user` - Create new user
 * PUT - `/api/v1/users/{user_id}` - Edit the user referring to the id entered in the parameter
@@ -48,16 +48,15 @@ Run all unit application tests
 After preparing your environment and your virtualenv, follow the steps:
 
 * `cd project-folder`
-* `pip install -r requeriments.txt`
-* `define your connection mongo string in persistence/mongo or define a `
-* set the MONGO_URI environment variable (for connection to the database) on your machine, or manually change the persistence/mongo file
+* `pip install -r requirements.txt`
+*  set the MONGO_URI environment variable (for connection to the database) and the APP_PORT variable (port on which the application will run) on your machine, or manually change the settings.py file.
 * `python main.py`
 
 Run application with docker:
 * `cd project-folder`
 * `docker build -t api-tornado-img .`
-* set a MONGODB URI environment variable no following command and run it.
-* `docker run -d -p 8081:8000 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
+*  set a MONGODB_URI environment variable no following command and run it.
+* `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
 * your application is running in 8081 port
 
 ##
@@ -112,13 +111,13 @@ Para realizar todos os testes do projeto, execute:
 Depois de preparar seu ambiente e seu virtualenv, siga os passos:
 
 * `cd project-folder`
-* `pip install -r requeriments.txt`
-*  defina a variavél de ambiente MONGO_URI (para conexão com o  banco) em sua maquina, ou altere manualmente no arquivo persistence/mongo.
+* `pip install -r requirements.txt`
+*  defina a variavél de ambiente MONGO_URI (para conexão com o  banco) e a variavél APP_PORT (porta na qual a aplicação sera executada) em sua maquina, ou altere manualmente no arquivo settings.py.
 * `python main.py`
 
 Se preferir, pode executar a aplicação com o docker:
 * `cd project-folder`
 * `docker build -t api-tornado .`
-* defina a variavél de ambiente MONGO URI no comando aseguir e execute-o.
-* `docker run -d -p 8081:8000 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
+* defina a variavél de ambiente MONGO_URI no comando aseguir e execute-o.
+* `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
 * sua aplicação esta rodando na porta 8081

@@ -23,7 +23,7 @@ def timestamp(key, data):
         for i, x in enumerate(data):
             data[i].update(
                 {
-                    key: date.datetime.utcfromtimestamp(int(data[i][key]['$date']) / 1000).strftime('%Y-%m-%d %H:%M:%S')
+                    key: parse_to_datetime(data[i][key]['$date'])
                 }
             )
         return data
@@ -31,7 +31,7 @@ def timestamp(key, data):
             try:
                 data.update(
                     {
-                        key: date.datetime.utcfromtimestamp(int(data[key]['$date'])/1000).strftime('%Y-%m-%d %H:%M:%S')
+                        key: parse_to_datetime(data[key]['$date'])
                      }
                 )
             except KeyError:
@@ -40,6 +40,12 @@ def timestamp(key, data):
                 return data
     else:
         raise TypeError
+
+
+def parse_to_datetime(timestamp_to_format):
+    normalize_timestamp = int(timestamp_to_format) / 1000
+    utc_date = date.datetime.utcfromtimestamp(normalize_timestamp)
+    return utc_date.strftime('%Y-%m-%d %H:%M:%S')
 
 
 def object_id_and_timestamp(timestamp_key, data):

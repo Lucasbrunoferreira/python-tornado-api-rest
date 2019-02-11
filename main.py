@@ -25,6 +25,6 @@ if __name__ == '__main__':
     app = make_app()
     settings.config_logs()
     http_server = HTTPServer(app)
-    http_server.listen(settings.PORT)
-    logger.info('Listening server on port {0}'.format(settings.PORT))
+    http_server.listen(settings.APP_PORT)
+    logger.info('Listening server on port {0}'.format(settings.APP_PORT))
     IOLoop.current().start()
