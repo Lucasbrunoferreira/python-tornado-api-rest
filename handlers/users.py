@@ -24,7 +24,7 @@ class UsersHandler(BaseHandler):
             if not key:
                 result = self.settings['mongo'].find_all()
             else:
-                result = self.settings['mongo'].find_one(key)
+                result = self.settings['mongo'].find_one(document_id=key)
         except ValueError:
             raise ErrorThrow(status_code=HTTPStatus.BAD_REQUEST,
                              reason='no user found with id {}'.format(key))
@@ -33,7 +33,8 @@ class UsersHandler(BaseHandler):
             raise ErrorThrow(status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
                              reason=str(err))
         else:
-            formatted_response = data_formatter.object_id_and_timestamp('created_at', result)
+            formatted_response = data_formatter.object_id_and_timestamp(timestamp_key='created_at',
+                                                                        data=result)
             self.write_response(status_code=HTTPStatus.OK,
                                 result=formatted_response)
 
@@ -46,14 +47,15 @@ class UsersHandler(BaseHandler):
                              reason=str(err))
         else:
             try:
-                response = self.settings['mongo'].insert_one(new_user)
+                response = self.settings['mongo'].insert_one(data=new_user)
             except Exception as ex:
                 logger.error(ex)
                 raise ErrorThrow(status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
                                  reason=str(ex))
             else:
-                new_user = self.settings['mongo'].find_one(response)
-                formatted_new_user = data_formatter.object_id_and_timestamp('created_at', new_user)
+                new_user = self.settings['mongo'].find_one(document_id=response)
+                formatted_new_user = data_formatter.object_id_and_timestamp(timestamp_key='created_at',
+                                                                            data=new_user)
                 self.write_response(status_code=HTTPStatus.CREATED,
                                     result=formatted_new_user)
 
@@ -67,9 +69,11 @@ class UsersHandler(BaseHandler):
                              reason=str(err))
         else:
             try:
-                response = self.settings['mongo'].update_one(key, self.data_received())
+                response = self.settings['mongo'].update_one(document_id=key,
+                                                             document=self.data_received())
 
-                formatted_response = data_formatter.object_id_and_timestamp('created_at', response)
+                formatted_response = data_formatter.object_id_and_timestamp(timestamp_key='created_at',
+                                                                            data=response)
             except ValueError:
                 raise ErrorThrow(status_code=HTTPStatus.BAD_REQUEST,
                                  reason='no user found with id {}'.format(key))
@@ -83,7 +87,7 @@ class UsersHandler(BaseHandler):
 
     def delete(self, key):
         try:
-            self.settings['mongo'].delete_one(key)
+            self.settings['mongo'].delete_one(document_id=key)
         except ValueError:
             raise ErrorThrow(status_code=HTTPStatus.BAD_REQUEST,
                              reason='no user found with id {}'.format(key))

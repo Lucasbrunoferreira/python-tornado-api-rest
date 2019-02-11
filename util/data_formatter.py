@@ -43,7 +43,8 @@ def timestamp(key, data):
 
 
 def object_id_and_timestamp(timestamp_key, data):
-    result_formatted_object_id = object_id(data)
-    formatted_data = timestamp(timestamp_key, result_formatted_object_id)
+    result_formatted_object_id = object_id(data=data)
+    formatted_data = timestamp(key=timestamp_key,
+                               data=result_formatted_object_id)
     return formatted_data
 
