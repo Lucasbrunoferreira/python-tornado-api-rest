@@ -57,7 +57,7 @@ Run application with docker:
 * `docker build -t api-tornado-img .`
 *  set a MONGODB_URI environment variable no following command and run it.
 * `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
-* your application is running in 8081 port
+* your application is running in 8080 port
 
 ##
 
@@ -120,4 +120,4 @@ Se preferir, pode executar a aplicação com o docker:
 * `docker build -t api-tornado .`
 * defina a variavél de ambiente MONGO_URI no comando aseguir e execute-o.
 * `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
-* sua aplicação esta rodando na porta 8081
+* sua aplicação esta rodando na porta 8080
