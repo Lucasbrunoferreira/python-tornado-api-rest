@@ -1,4 +1,4 @@
-# Tornado API RESTfull - Python
+# Tornado API RESTful - Python
 
 ## English
 
