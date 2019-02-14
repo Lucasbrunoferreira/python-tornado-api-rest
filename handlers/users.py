@@ -15,7 +15,6 @@ class UsersHandler(BaseHandler):
     def prepare(self):
         self.settings['mongo'].define_collection('users')
         self.users_collection = self.settings['mongo']
-
         pass
 
     def data_received(self, chunk=None):
