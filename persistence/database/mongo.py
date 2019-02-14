@@ -27,7 +27,7 @@ class MongoDb:
         return _mongo_client
 
     def define_collection(self, collection):
-        self.database_collection = self.database_collection[collection]
+        self.database_collection = _mongo_client.get_database().get_collection(name=collection)
 
     def insert_one(self, data: dict):
         try:
