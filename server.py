@@ -3,6 +3,7 @@ from tornado.ioloop import IOLoop
 from tornado.httpserver import HTTPServer
 from tornado.options import define, options
 from logzero import logger
+
 from handlers.users import UsersHandler
 from persistence.database.mongo import MongoDb
 
