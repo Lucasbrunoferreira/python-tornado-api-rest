@@ -10,9 +10,12 @@ import json
 
 
 class UsersHandler(BaseHandler):
+    users_collection: None
 
     def prepare(self):
         self.settings['mongo'].define_collection('users')
+        self.users_collection = self.settings['mongo']
+
         pass
 
     def data_received(self, chunk=None):
@@ -22,9 +25,9 @@ class UsersHandler(BaseHandler):
     def get(self, key):
         try:
             if not key:
-                result = self.settings['mongo'].find_all()
+                result = self.users_collection.find_all()
             else:
-                result = self.settings['mongo'].find_one(document_id=key)
+                result = self.users_collection.find_one(document_id=key)
         except ValueError:
             raise ErrorThrow(status_code=HTTPStatus.BAD_REQUEST,
                              reason='no user found with id {}'.format(key))
@@ -47,13 +50,13 @@ class UsersHandler(BaseHandler):
                              reason=str(err))
         else:
             try:
-                response = self.settings['mongo'].insert_one(data=new_user)
+                response = self.users_collection.insert_one(data=new_user)
             except Exception as ex:
                 logger.error(ex)
                 raise ErrorThrow(status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
                                  reason=str(ex))
             else:
-                new_user = self.settings['mongo'].find_one(document_id=response)
+                new_user = self.users_collection.find_one(document_id=response)
                 formatted_new_user = data_formatter.object_id_and_timestamp(timestamp_key='created_at',
                                                                             data=new_user)
                 self.write_response(status_code=HTTPStatus.CREATED,
@@ -69,7 +72,7 @@ class UsersHandler(BaseHandler):
                              reason=str(err))
         else:
             try:
-                response = self.settings['mongo'].update_one(document_id=key,
+                response = self.users_collection.update_one(document_id=key,
                                                              document=self.data_received())
 
                 formatted_response = data_formatter.object_id_and_timestamp(timestamp_key='created_at',
@@ -87,7 +90,7 @@ class UsersHandler(BaseHandler):
 
     def delete(self, key):
         try:
-            self.settings['mongo'].delete_one(document_id=key)
+            self.users_collection.delete_one(document_id=key)
         except ValueError:
             raise ErrorThrow(status_code=HTTPStatus.BAD_REQUEST,
                              reason='no user found with id {}'.format(key))

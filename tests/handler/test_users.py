@@ -1,6 +1,6 @@
 from tornado.testing import AsyncHTTPTestCase
 from unittest.mock import patch
-from main import make_app
+from server import make_app
 
 
 class TestUsers(AsyncHTTPTestCase):

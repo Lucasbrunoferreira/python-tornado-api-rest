@@ -50,7 +50,7 @@ After preparing your environment and your virtualenv, follow the steps:
 * `cd project-folder`
 * `pip install -r requirements.txt`
 *  set the MONGO_URI environment variable (for connection to the database) and the APP_PORT variable (port on which the application will run) on your machine, or manually change the settings.py file.
-* `python main.py`
+* `python server.py`
 
 Run application with docker:
 * `cd project-folder`
