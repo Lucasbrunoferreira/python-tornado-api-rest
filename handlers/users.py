@@ -72,7 +72,7 @@ class UsersHandler(BaseHandler):
         else:
             try:
                 response = self.users_collection.update_one(document_id=key,
-                                                             document=self.data_received())
+                                                            document=self.data_received())
 
                 formatted_response = data_formatter.object_id_and_timestamp(timestamp_key='created_at',
                                                                             data=response)
