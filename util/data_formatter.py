@@ -21,19 +21,11 @@ def object_id(data):
 def timestamp(key, data):
     if type(data) is list:
         for i, x in enumerate(data):
-            data[i].update(
-                {
-                    key: parse_to_datetime(data[i][key]['$date'])
-                }
-            )
+            data[i].update({key: parse_to_datetime(data[i][key]['$date'])})
         return data
     elif type(data) is dict:
             try:
-                data.update(
-                    {
-                        key: parse_to_datetime(data[key]['$date'])
-                     }
-                )
+                data.update({key: parse_to_datetime(data[key]['$date'])})
             except KeyError:
                 pass
             finally:
