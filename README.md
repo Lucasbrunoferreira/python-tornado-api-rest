@@ -2,7 +2,7 @@
 
 ## English
 
-This is a simple example, to implements a http web server (API RESTfull) with python (tornado framework).
+This is a example, to implements a http web server (API RESTfull) in python with tornado framework, mongo, redis and docker..
 
 
 ### Dependencies
@@ -12,6 +12,7 @@ This is a simple example, to implements a http web server (API RESTfull) with py
 | tornado | web framework server    |    https://www.tornadoweb.org/ |
 | pymongo      | mongo database driver | https://api.mongodb.com/python/current/ |
 | marshmallow      | fileds schema validator     |   https://marshmallow.readthedocs.io |
+| redis | caching requests | https://redis-py.readthedocs.io |
 | logzero | create application logs   |    https://logzero.readthedocs.io/en/latest/ |
 | unittest | unit tests   |    https://docs.python.org/3/library/unittest.html |
 
@@ -49,14 +50,14 @@ After preparing your environment and your virtualenv, follow the steps:
 
 * `cd project-folder`
 * `pip install -r requirements.txt`
-*  set the MONGO_URI environment variable (for connection to the database) and the APP_PORT variable (port on which the application will run) on your machine, or manually change the settings.py file.
+*  set the environment variables (examples in file: .env.example) on your machine, or manually change the settings.py file.
 * `python server.py`
 
 Run application with docker:
 * `cd project-folder`
 * `docker build -t api-tornado-img .`
-*  set a MONGODB_URI environment variable no following command and run it.
-* `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
+*  set the environment variables in the following command and run it.
+* `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" -e REDIS_HOST="127.0.0.1" -e REDIS_PORT=6379 -e REDIS_PASS="your-redis-pass" api-tornado-img:latest`
 * your application is running in 8080 port
 
 ##
@@ -64,7 +65,7 @@ Run application with docker:
 
 ## Português - Brasil
 
-Este é um exemplo simples, para implementar um servidor web http (API RESTfull) com python (framework tornado).
+Este é um exemplo, para implementar um servidor web http (API RESTfull) em python com framework tornado, mongo, redis e docker.
 
 
 ### Dependências
@@ -74,6 +75,7 @@ Este é um exemplo simples, para implementar um servidor web http (API RESTfull)
 | tornado | servidor web    |    https://www.tornadoweb.org/ |
 | pymongo      | conexão com o banco de dado NoSQL mongo | https://api.mongodb.com/python/current/ |
 | marshmallow      | validação de campos e dados     |   https://marshmallow.readthedocs.io |
+| redis | caching requisições | https://redis-py.readthedocs.io |
 | logzero | criação de logs da applicação   |    https://logzero.readthedocs.io/en/latest/ |
 | unittest | testes unitários   |    https://docs.python.org/3/library/unittest.html |
 
@@ -112,12 +114,12 @@ Depois de preparar seu ambiente e seu virtualenv, siga os passos:
 
 * `cd project-folder`
 * `pip install -r requirements.txt`
-*  defina a variavél de ambiente MONGO_URI (para conexão com o  banco) e a variavél APP_PORT (porta na qual a aplicação sera executada) em sua maquina, ou altere manualmente no arquivo settings.py.
+*  defina as variavéis de ambiente (assim como o.env.example) em sua maquina, ou altere manualmente no arquivo settings.py.
 * `python main.py`
 
 Se preferir, pode executar a aplicação com o docker:
 * `cd project-folder`
 * `docker build -t api-tornado .`
-* defina a variavél de ambiente MONGO_URI no comando aseguir e execute-o.
-* `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" api-tornado-img:latest`
+* defina as variavéis de ambiente comando aseguir e execute-o.
+* `docker run -d -p 8080:8080 --name api-tornado -e MONGO_URI="mongodb://user:password@host:port/database" -e REDIS_HOST="127.0.0.1" -e REDIS_PORT=6379 -e REDIS_PASS="your-redis-pass" api-tornado-img:latest`
 * sua aplicação esta rodando na porta 8080

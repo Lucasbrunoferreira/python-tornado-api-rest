@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from tornado.web import RequestHandler
 import json
 
@@ -25,5 +26,6 @@ class BaseHandler(RequestHandler):
             self.finish(json.dumps({
                 "message": message
             }))
-        else:
+        elif status_code:
+            self.set_status(status_code)
             self.finish()

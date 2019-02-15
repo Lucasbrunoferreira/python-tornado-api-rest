@@ -5,7 +5,7 @@ from tornado.options import define, options
 from logzero import logger
 
 from handlers.users import UsersHandler
-from persistence.database.mongo import MongoDb
+from persistence.database import mongo, redisdb
 
 import settings
 
@@ -13,13 +13,14 @@ define('version', default=1)
 
 
 def make_app():
-    mongo_instance = MongoDb()
-
     endpoints = [
         (r'/api/v{}/users/?(.*)?'.format(options.version), UsersHandler)
     ]
 
-    return Application(endpoints, debug=True, mongo=mongo_instance)
+    return Application(endpoints,
+                       debug=True,
+                       mongo=mongo.MongoDb(),
+                       redis=redisdb.RedisDb())
 
 
 if __name__ == '__main__':

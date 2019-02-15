@@ -2,8 +2,11 @@ import logging
 import logzero
 import os
 
-APP_PORT = os.environ.get("PORT")
+APP_PORT = os.environ.get("APP_PORT")
 MONGO_URI = os.environ.get("MONGO_URI")
+REDIS_HOST = os.environ.get("REDIS_HOST")
+REDIS_PORT = os.environ.get("REDIS_PORT")
+REDIS_PASS = os.environ.get("REDIS_PASS")
 
 
 def config_logs():
