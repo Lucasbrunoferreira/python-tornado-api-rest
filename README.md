@@ -11,7 +11,7 @@ This is a example, to implements a http web server (API RESTfull) in python with
 | ------------- |:-------------:| -----:|
 | tornado | web framework server    |    https://www.tornadoweb.org/ |
 | pymongo      | mongo database driver | https://api.mongodb.com/python/current/ |
-| marshmallow      | fileds schema validator     |   https://marshmallow.readthedocs.io |
+| marshmallow      | ODM (Object Document Mapper)     |   https://marshmallow.readthedocs.io |
 | redis | caching requests | https://redis-py.readthedocs.io |
 | logzero | create application logs   |    https://logzero.readthedocs.io/en/latest/ |
 | unittest | unit tests   |    https://docs.python.org/3/library/unittest.html |
@@ -74,7 +74,7 @@ Este é um exemplo, para implementar um servidor web http (API RESTfull) em pyth
 | ------------- |:-------------:| -----:|
 | tornado | servidor web    |    https://www.tornadoweb.org/ |
 | pymongo      | conexão com o banco de dado NoSQL mongo | https://api.mongodb.com/python/current/ |
-| marshmallow      | validação de campos e dados     |   https://marshmallow.readthedocs.io |
+| marshmallow      | ODM (Object Document Mapper)    |   https://marshmallow.readthedocs.io |
 | redis | caching requisições | https://redis-py.readthedocs.io |
 | logzero | criação de logs da applicação   |    https://logzero.readthedocs.io/en/latest/ |
 | unittest | testes unitários   |    https://docs.python.org/3/library/unittest.html |

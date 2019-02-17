@@ -3,26 +3,34 @@ from logzero import logger
 import redis
 import settings
 
+_redis_client = None
+
 
 class RedisDb:
-    redis_client: None
-
     def __init__(self):
+        self.get_redis_client()
+
+    @staticmethod
+    def get_redis_client(new=False):
+        global _redis_client
+
         try:
-            self.redis_client = redis.Redis(
-                host=settings.REDIS_HOST,
-                port=settings.REDIS_PORT,
-                password=settings.REDIS_PASS,
-                db=0)
+            if new or not _redis_client:
+                _redis_client = redis.Redis(
+                    host=settings.REDIS_HOST,
+                    port=settings.REDIS_PORT,
+                    password=settings.REDIS_PASS,
+                    db=0)
         except Exception as ex:
             logger.error(ex)
             raise ex
         else:
-            pass
+            return _redis_client
 
-    def get_data(self, key):
+    @staticmethod
+    def get_data(key):
         try:
-            redis_data = self.redis_client.get(key)
+            redis_data = _redis_client.get(key)
         except Exception as ex:
             logger.error(ex)
             raise ex
@@ -32,18 +40,20 @@ class RedisDb:
             else:
                 return None
 
-    def set_data(self, key, data, time):
+    @staticmethod
+    def set_data(key, data, time):
         try:
-            self.redis_client.set(key, str(data).encode('utf-8'), time)
+            _redis_client.set(key, str(data).encode('utf-8'), time)
         except Exception as ex:
             logger.error(ex)
             raise ex
         else:
             pass
 
-    def delete_data(self, key):
+    @staticmethod
+    def delete_data(key):
         try:
-            self.redis_client.delete(key)
+            _redis_client.delete(key)
         except Exception as ex:
             logger.error(ex)
             raise ex

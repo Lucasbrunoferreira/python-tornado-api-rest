@@ -21,6 +21,8 @@ class MongoDb:
             if new or not _mongo_client:
                 _mongo_client = MongoClient(settings.MONGO_URI)
                 self.database_collection = _mongo_client.get_database()
+                print('new mongo', _mongo_client)
+                print(self.database_collection)
         except Exception as err:
             logger.error(err)
             _mongo_client = None
